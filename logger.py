@@ -1,7 +1,11 @@
+"""Logging Utility"""
+
+__version__ = "0.4.1"
+__author__ = "ariadie@gmail.com"
+__date__ = "2025-12-24"
+
 import csv
 from typing import List, Dict, Any
-
-__version__ = "0.4.0"
 
 class Logger:
     """Class for logging evolutionary statistics."""

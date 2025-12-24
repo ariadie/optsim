@@ -2,6 +2,10 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.4.1] - 2025-12-24
+### Changed
+- Standardized file headers with docstrings, author, and version information.
+
 ## [0.4.0] - 2025-12-24
 ### Added
 - Implemented Simulated Annealing (SA) solver.

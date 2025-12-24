@@ -1,10 +1,14 @@
+"""Solver for Simulated Annealing"""
+
+__version__ = "0.4.1"
+__author__ = "ariadie@gmail.com"
+__date__ = "2025-12-24"
+
 import random
 import math
 from typing import List, Any
 from problem import Problem
 from logger import Logger
-
-__version__ = "0.4.0"
 
 class SASolver:
     """Simulated Annealing Solver."""

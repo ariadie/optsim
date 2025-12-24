@@ -1,3 +1,9 @@
+"""Main entry point for OptSim"""
+
+__version__ = "0.4.1"
+__author__ = "ariadie@gmail.com"
+__date__ = "2025-12-24"
+
 import os
 import argparse
 from datetime import datetime
@@ -7,8 +13,6 @@ from visualizer import Visualizer
 from solvers import GASolver, RLSolver, SASolver
 from rl_env import OneMaxEnv
 import version
-
-__version__ = "0.4.0"
 
 def run_ga(problem_size=100):
     print(f"Genetic Algorithm Optimizer v{version.__version__}")

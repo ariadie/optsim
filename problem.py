@@ -1,8 +1,12 @@
+"""Optimization Problem Definitions"""
+
+__version__ = "0.4.1"
+__author__ = "ariadie@gmail.com"
+__date__ = "2025-12-24"
+
 import random
 from abc import ABC, abstractmethod
 from typing import List, Any, Tuple
-
-__version__ = "0.4.0"
 
 class Problem(ABC):
     """Abstract base class for optimization problems."""

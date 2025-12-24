@@ -1,7 +1,11 @@
+"""Visualization Utility"""
+
+__version__ = "0.4.1"
+__author__ = "ariadie@gmail.com"
+__date__ = "2025-12-24"
+
 import matplotlib.pyplot as plt
 from typing import List, Dict, Any
-
-__version__ = "0.4.0"
 
 class Visualizer:
     """Class for visualizing evolutionary progress."""

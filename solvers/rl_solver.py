@@ -1,8 +1,12 @@
+"""Solver for Reinforcement Learning (Q-Learning)"""
+
+__version__ = "0.4.1"
+__author__ = "ariadie@gmail.com"
+__date__ = "2025-12-24"
+
 import random
 from typing import Dict, Tuple, List, Any
 from rl_env import RLEnvironment
-
-__version__ = "0.4.0"
 
 class RLSolver:
     """Tabular Q-Learning Solver."""
