@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.5.0] - 2025-12-24
+### Added
+- Implemented **0/1 Knapsack Problem** (`problems/knapsack.py`) as a new optimization challenge.
+- Added `--problem` argument to CLI to switch between `onemax` and `knapsack`.
+- Refactored `problem.py` into a modular `problems/` package with `base.py` and `onemax.py`.
+
 ## [0.4.1] - 2025-12-24
 ### Changed
 - Standardized file headers with docstrings, author, and version information.

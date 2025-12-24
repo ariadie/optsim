@@ -1,13 +1,13 @@
 """RL Environment Wrapper"""
 
-__version__ = "0.4.1"
+__version__ = "0.5.0"
 __author__ = "ariadie@gmail.com"
 __date__ = "2025-12-24"
 
 import random
 from abc import ABC, abstractmethod
 from typing import Any, Tuple, List
-from problem import Problem, OneMaxProblem
+from problems import Problem, OneMaxProblem
 
 class RLEnvironment(ABC):
     """Abstract base class for RL Environments."""

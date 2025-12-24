@@ -37,12 +37,12 @@ Run the optimizer with your preferred solver:
 ### Genetic Algorithm (Default)
 Suitable for larger problem sizes (e.g., 100 bits).
 ```bash
-python main.py --solver ga --size 100
+python main.py --solver ga --problem onemax --size 100
 ```
-- **Output**: Plot saved to `plots/ga_onemax_100.png`, logs to `logs/ga_log_....csv`.
+- **Output**: Plot saved to `plots/ga_onemax_100.png`, logs to `logs/ga_onemax_log_....csv`.
 
 ### Reinforcement Learning
-Suitable for small problem sizes (e.g., 8-12 bits) due to state space explosion ($2^N$).
+Suitable for small problem sizes (e.g., 8-12 bits) due to state space explosion ($2^N$). Currently supports OneMax only.
 ```bash
 python main.py --solver rl --size 8
 ```
@@ -51,9 +51,9 @@ python main.py --solver rl --size 8
 ### Simulated Annealing
 Suitable for various problem sizes, provides a good balance between exploration and exploitation.
 ```bash
-python main.py --solver sa --size 100
+python main.py --solver sa --problem knapsack --size 50
 ```
-- **Output**: Plot saved to `plots/sa_onemax_100.png`, logs to `logs/sa_log_....csv`.
+- **Output**: Plot saved to `plots/sa_knapsack_50.png`, logs to `logs/sa_knapsack_log_....csv`.
 
 ## Extensibility
 

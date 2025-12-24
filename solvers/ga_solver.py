@@ -1,12 +1,12 @@
 """Solver for Genetic Algorithm"""
 
-__version__ = "0.4.1"
+__version__ = "0.5.0"
 __author__ = "ariadie@gmail.com"
 __date__ = "2025-12-24"
 
 import random
 from typing import List, Any
-from problem import Problem
+from problems import Problem
 from logger import Logger
 
 class Solver:
