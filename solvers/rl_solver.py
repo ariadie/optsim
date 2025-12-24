@@ -2,7 +2,7 @@ import random
 from typing import Dict, Tuple, List, Any
 from rl_env import RLEnvironment
 
-__version__ = "0.3.0"
+__version__ = "0.4.0"
 
 class RLSolver:
     """Tabular Q-Learning Solver."""

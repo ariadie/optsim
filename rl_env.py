@@ -3,7 +3,7 @@ from abc import ABC, abstractmethod
 from typing import Any, Tuple, List
 from problem import Problem, OneMaxProblem
 
-__version__ = "0.3.0"
+__version__ = "0.4.0"
 
 class RLEnvironment(ABC):
     """Abstract base class for RL Environments."""

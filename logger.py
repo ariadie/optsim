@@ -1,7 +1,7 @@
 import csv
 from typing import List, Dict, Any
 
-__version__ = "0.3.0"
+__version__ = "0.4.0"
 
 class Logger:
     """Class for logging evolutionary statistics."""

@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.4.0] - 2025-12-24
+### Added
+- Implemented Simulated Annealing (SA) solver.
+- Refactored project structure: solvers moved to `solvers/` package.
+- Added command line interface with `--solver` argument.
+
 ## [0.3.0] - 2025-12-24
 ### Added
 - Implemented identifying and logging the best solution string for each generation.

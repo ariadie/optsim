@@ -3,7 +3,7 @@ from typing import List, Any
 from problem import Problem
 from logger import Logger
 
-__version__ = "0.3.0"
+__version__ = "0.4.0"
 
 class Solver:
     """Genetic Algorithm Solver."""

@@ -1,61 +1,75 @@
-# Genetic Algorithm Optimizer
+# OptSim Optimizer
 
-A modular Python implementation of a Genetic Algorithm designed to solve optimization problems. This project currently includes an implementation for the **OneMax** problem but is designed to be extensible for other optimization tasks.
+A modular Python framework for optimization problems. This project includes implementations for **Genetic Algorithm (GA)** and **Reinforcement Learning (RL)** solvers, using the **OneMax** problem as a demonstration.
 
 ## Features
 
-- **Modular Architecture**: Separated concerns into Problem, Solver, Logger, and Visualizer components.
-- **Genetic Algorithm**: Implements tournament selection, uniform crossover (via child generation), mutation, and elitism.
-- **Logging**:
-  - Real-time console output of generation statistics.
-  - CSV logging of best fitness, average fitness, and the best solution string for every generation.
-- **Visualization**: Generates a plot of the evolutionary progress (Best vs. Average Fitness) using Matplotlib.
+- **Multi-Solver Architecture**: modular design supporting different optimization strategies (GA, RL).
+- **Genetic Algorithm**: Tournament selection, uniform crossover, mutation, elitism.
+- **Reinforcement Learning**: Tabular Q-Learning integration for smaller problem spaces.
+- **Logging & Visualization**: Real-time console output, CSV logging, and fitness history plotting.
 
 ## Project Structure
 
-- **`main.py`**: The entry point of the application. Orchestrates the setup of the problem, solver, logger, and visualizer.
-- **`solver.py`**: Contains the `Solver` class which implements the core Genetic Algorithm logic.
-- **`problem.py`**: Defines the `Problem` abstract base class and the `OneMaxProblem` concrete implementation.
-- **`logger.py`**: Handles logging of statistics to both the console and CSV files.
-- **`visualizer.py`**: Uses `matplotlib` to generate fitness plots from the log history.
-- **`version.py`**: Contains the version information.
+- **`main.py`**: Entry point. Orchestrates the problem, solver selection, logging, and visualization.
+- **`solvers/`**:
+  - **`ga_solver.py`**: Genetic Algorithm implementation.
+  - **`rl_solver.py`**: Q-Learning implementation.
+- **`problem.py`**: Abstract base class and `OneMaxProblem` implementation.
+- **`rl_env.py`**: OpenAI Gym-like wrapper for RL solvers.
+- **`logger.py`**: Statistics logging.
+- **`visualizer.py`**: Plotting utilities.
 
 ## Requirements
 
 - Python 3.x
 - Matplotlib
 
-You can install the necessary dependencies using pip:
-
+Install dependencies:
 ```bash
 pip install matplotlib
 ```
 
 ## Usage
 
-To run the optimizer with the default OneMax problem:
+Run the optimizer with your preferred solver:
 
+### Genetic Algorithm (Default)
+Suitable for larger problem sizes (e.g., 100 bits).
 ```bash
-python main.py
+python main.py --solver ga --size 100
 ```
+- **Output**: Plot saved to `plots/ga_onemax_100.png`, logs to `logs/ga_log_....csv`.
 
-### Output
+### Reinforcement Learning
+Suitable for small problem sizes (e.g., 8-12 bits) due to state space explosion ($2^N$).
+```bash
+python main.py --solver rl --size 8
+```
+- **Output**: Console description of the solution path.
 
-1. **Console Output**: Shows progress for each generation.
-   ```text
-   Gen 1: Best Fitness = 62, Avg Fitness = 50.28, Best Sol = [1, 1, ... 0]
-   ...
-   Optimization complete.
-   Best solution fitness: 100
-   ```
-
-2. **Plots**: A plot image (e.g., `onemax_plot.png`) is saved to the project root, showing the convergence of fitness over generations.
-
-3. **Logs**: A CSV file (e.g., `logs/log_YYYYMMDD_HHMMSS.csv`) is created in the `logs` directory containing detailed statistics for each generation.
+### Simulated Annealing
+Suitable for various problem sizes, provides a good balance between exploration and exploitation.
+```bash
+python main.py --solver sa --size 100
+```
+- **Output**: Plot saved to `plots/sa_onemax_100.png`, logs to `logs/sa_log_....csv`.
 
 ## Extensibility
 
-To solve a new problem:
-1. Create a new class that inherits from the `Problem` class in `problem.py`.
-2. Implement the abstract methods: `create_individual`, `evaluate`, `mutate`, and `crossover`.
-3. Instantiate your new problem class in `main.py` and pass it to the `Solver`.
+### Adding a New Problem
+1. Inherit from `Problem` in `problem.py`.
+2. Implement `create_individual`, `evaluate`, `mutate`, and `crossover`.
+3. Use it in `main.py`.
+
+### Adding a New Solver
+1. Create a new file in `solvers/` (e.g., `sa_solver.py`).
+2. Implement your solver class.
+3. Import and add a new branch in `main.py` to handle the new solver.
+
+## Future Recommendations
+
+To further enhance this framework, consider adding:
+1.  **Simulated Annealing (SA)**: Good for local search and escaping local optima.
+2.  **Particle Swarm Optimization (PSO)**: Effective for continuous optimization problems (would require adapting `Problem` for continuous domains).
+3.  **Deep Q-Network (DQN)**: Replace tabular Q-Learning with a neural network to scale RL to larger problem sizes.
