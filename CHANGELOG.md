@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.3.0] - 2025-12-24
+### Added
+- Implemented identifying and logging the best solution string for each generation.
+- Added new Reinforcement Learning (Q-Learning) solver module: `rl_solver.py`, `rl_env.py`, `main_rl.py`.
+- Added `README.md` with project documentation.
+- Updated console output to show the best solution string.
+
 ## [0.2.0] - 2025-12-24
 ### Added
 - Implemented log saving to `logs` directory with timestamped filenames.

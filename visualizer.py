@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 from typing import List, Dict, Any
 
-__version__ = "0.2.0"
+__version__ = "0.3.0"
 
 class Visualizer:
     """Class for visualizing evolutionary progress."""

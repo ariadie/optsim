@@ -2,7 +2,7 @@ import random
 from abc import ABC, abstractmethod
 from typing import List, Any, Tuple
 
-__version__ = "0.2.0"
+__version__ = "0.3.0"
 
 class Problem(ABC):
     """Abstract base class for optimization problems."""

@@ -6,7 +6,7 @@ from visualizer import Visualizer
 from solver import Solver
 import version
 
-__version__ = "0.2.0"
+__version__ = "0.3.0"
 
 def main():
     print(f"Genetic Algorithm Optimizer v{version.__version__}")
