@@ -119,6 +119,10 @@ self.logger.log(gen, best_fitness, avg_fitness, best_ind, population=self.popula
    - Inspired by phylogenetic heatmaps in bioinformatics.
    - Reveals premature convergence and diversity loss.
 3. **Problem-Specific Charts**: Tailored insights (e.g., Knapsack item selection).
+4. **Animated Evolution (v0.7.0)**: GIF showing best individual evolution over generations.
+   - Uses `matplotlib.animation.FuncAnimation` with `PillowWriter`.
+   - Visual design: colored squares (green=1, red=0), generation counter, fitness display, progress bar.
+   - Educational value: Shows convergence pattern intuitively.
 
 **Design Pattern**:
 ```python
@@ -294,9 +298,10 @@ __date__ = "2025-12-25"
    - **Multi-Objective**: Pareto front visualization.
 
 3. **Advanced Visualizations**:
-   - **Real-time Animation**: Pygame or Matplotlib `FuncAnimation`.
+   - ~~**Real-time Animation**: Pygame or Matplotlib `FuncAnimation`.~~ ✅ **Implemented in v0.7.0** (GIF animation)
    - **3D Fitness Landscapes**: For 2D continuous problems.
    - **Diversity Metrics**: Shannon entropy, Hamming distance distributions.
+   - **Knapsack Animation**: Animated item selection with weight gauge.
 
 4. **Performance Optimization**:
    - **Parallelization**: Evaluate population in parallel (multiprocessing).
@@ -345,4 +350,4 @@ __date__ = "2025-12-25"
 
 ---
 
-*Last Updated: 2025-12-25 (v0.6.0)*
+*Last Updated: 2025-12-25 (v0.7.0)*

@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 
 
+
+## [0.7.0] - 2025-12-25
+### Added
+- **Animated Visualization**: New `animate_best_individual()` method in `visualizer.py`
+  - Creates animated GIF showing best individual evolution over generations
+  - Visual design: colored squares (green=1, red=0), generation counter, fitness display, progress bar
+  - Automatic generation for OneMax problems
+  - Uses matplotlib.animation with PillowWriter (no external dependencies beyond pillow)
+- Updated `main.py` to generate animation for OneMax problems
+
+### Changed
+- Bumped `visualizer.py` version to 0.7.0
+
 ## [0.6.0] - 2025-12-25
 ### Added
 - **Enhanced Visualization System**: Major upgrade to `visualizer.py` with three specialized plotting methods:

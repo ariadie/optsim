@@ -57,6 +57,10 @@ def run_ga(problem_name="onemax", problem_size=100):
     visualizer.plot_fitness(logger.get_history(), f"logs/ga_{problem_name}_{problem_size}_fitness_{timestamp}.png")
     visualizer.plot_population_heatmap(logger.get_history(), f"logs/ga_{problem_name}_{problem_size}_heatmap_{timestamp}.png")
     
+    # Generate animation for OneMax to show best individual evolution
+    if problem_name == "onemax":
+        visualizer.animate_best_individual(logger.get_history(), f"logs/ga_{problem_name}_{problem_size}_animation_{timestamp}.gif", fps=2)
+    
     if problem_name == "knapsack":
         visualizer.plot_knapsack_solution(problem, best_solution, f"logs/ga_{problem_name}_{problem_size}_solution_{timestamp}.png")
 

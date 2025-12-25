@@ -1,10 +1,13 @@
 """Visualization Utility"""
 
-__version__ = "0.6.0"
+__version__ = "0.7.0"
 __author__ = "ariadie@gmail.com"
 __date__ = "2025-12-25"
 
 import matplotlib.pyplot as plt
+import matplotlib.animation as animation
+from matplotlib.animation import PillowWriter
+import numpy as np
 from typing import List, Dict, Any
 
 class Visualizer:
@@ -109,3 +112,121 @@ class Visualizer:
         plt.savefig(filename)
         print(f"Knapsack solution plot saved to {filename}")
         plt.close()
+
+    def animate_best_individual(self, history: List[Dict[str, Any]], filename: str = "best_individual_animation.gif", fps: int = 2):
+        """
+        Create an animated visualization showing how the best individual evolves over generations.
+        
+        Args:
+            history: Logger history containing best_solution for each generation
+            filename: Output filename (.gif or .mp4)
+            fps: Frames per second (default: 2 for educational viewing)
+        """
+        if not history or 'best_solution' not in history[0]:
+            print("No best_solution data available for animation.")
+            return
+        
+        # Extract data
+        generations = [entry['generation'] for entry in history]
+        best_solutions = [entry['best_solution'] for entry in history]
+        best_fitness = [entry['best_fitness'] for entry in history]
+        
+        # Get problem size
+        problem_size = len(best_solutions[0])
+        max_fitness = max(best_fitness)
+        
+        # Setup figure
+        fig = plt.figure(figsize=(12, 6))
+        gs = fig.add_gridspec(3, 1, height_ratios=[1, 3, 1], hspace=0.3)
+        
+        ax_title = fig.add_subplot(gs[0])
+        ax_bits = fig.add_subplot(gs[1])
+        ax_progress = fig.add_subplot(gs[2])
+        
+        # Remove axes for title and progress
+        ax_title.axis('off')
+        ax_progress.set_xlim(0, 1)
+        ax_progress.set_ylim(0, 1)
+        ax_progress.axis('off')
+        
+        def update(frame):
+            """Update function for each animation frame."""
+            gen = generations[frame]
+            solution = best_solutions[frame]
+            fitness = best_fitness[frame]
+            
+            # Clear axes
+            ax_title.clear()
+            ax_bits.clear()
+            ax_progress.clear()
+            
+            ax_title.axis('off')
+            ax_progress.axis('off')
+            
+            # Title with generation and fitness
+            ax_title.text(0.5, 0.5, f'Generation: {gen}    Fitness: {int(fitness)}/{problem_size}', 
+                         ha='center', va='center', fontsize=16, fontweight='bold')
+            
+            # Draw binary string as colored squares
+            colors = ['#2ecc71' if bit == 1 else '#e74c3c' for bit in solution]
+            
+            # Calculate grid dimensions for better layout
+            cols = min(20, problem_size)  # Max 20 columns
+            rows = (problem_size + cols - 1) // cols  # Ceiling division
+            
+            ax_bits.set_xlim(-0.5, cols - 0.5)
+            ax_bits.set_ylim(-0.5, rows - 0.5)
+            ax_bits.set_aspect('equal')
+            ax_bits.invert_yaxis()
+            
+            # Draw squares
+            for i, (bit, color) in enumerate(zip(solution, colors)):
+                row = i // cols
+                col = i % cols
+                
+                # Draw square
+                square = plt.Rectangle((col - 0.4, row - 0.4), 0.8, 0.8, 
+                                       facecolor=color, edgecolor='black', linewidth=1)
+                ax_bits.add_patch(square)
+                
+                # Add bit value as text
+                ax_bits.text(col, row, str(bit), ha='center', va='center', 
+                           fontsize=10, fontweight='bold', color='white')
+            
+            # Remove ticks and labels
+            ax_bits.set_xticks([])
+            ax_bits.set_yticks([])
+            ax_bits.set_title('Best Individual (Green=1, Red=0)', fontsize=12, pad=10)
+            
+            # Progress bar
+            progress = fitness / max_fitness if max_fitness > 0 else 0
+            
+            # Background bar
+            ax_progress.add_patch(plt.Rectangle((0.1, 0.3), 0.8, 0.4, 
+                                               facecolor='lightgray', edgecolor='black', linewidth=2))
+            
+            # Progress bar
+            ax_progress.add_patch(plt.Rectangle((0.1, 0.3), 0.8 * progress, 0.4, 
+                                               facecolor='#3498db', edgecolor='black', linewidth=2))
+            
+            # Progress text
+            ax_progress.text(0.5, 0.5, f'{progress*100:.1f}% Optimal', 
+                           ha='center', va='center', fontsize=12, fontweight='bold')
+            
+            return []
+        
+        # Create animation
+        print(f"Creating animation with {len(generations)} frames...")
+        anim = animation.FuncAnimation(fig, update, frames=len(generations), 
+                                      interval=1000/fps, repeat=True, blit=False)
+        
+        # Save animation
+        try:
+            writer = PillowWriter(fps=fps)
+            anim.save(filename, writer=writer)
+            print(f"Animation saved to {filename}")
+        except Exception as e:
+            print(f"Error saving animation: {e}")
+            print("Make sure 'pillow' is installed: pip install pillow")
+        finally:
+            plt.close(fig)

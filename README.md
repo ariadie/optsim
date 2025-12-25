@@ -52,6 +52,7 @@ python main.py --solver ga --problem onemax --size 100
 - **Output**: All files saved to `logs/` directory with timestamps:
   - `logs/ga_onemax_100_fitness_YYYYMMDD_HHMMSS.png` - Fitness progression
   - `logs/ga_onemax_100_heatmap_YYYYMMDD_HHMMSS.png` - Population diversity
+  - `logs/ga_onemax_100_animation_YYYYMMDD_HHMMSS.gif` - Animated best individual evolution
   - `logs/ga_onemax_log_YYYYMMDD_HHMMSS.csv` - Detailed statistics
 
 ### Reinforcement Learning
@@ -90,7 +91,14 @@ Useful for:
 - Tuning mutation rates and population sizes
 
 ### Problem-Specific Visualizations
+
 **Knapsack Solution Chart**: Two-panel bar chart showing selected items (green) vs. unselected (gray), with weight and value distributions.
+
+**OneMax Animation**: Animated GIF showing the evolution of the best individual over generations.
+- Binary string displayed as colored squares (green=1, red=0)
+- Generation counter and fitness score overlay
+- Progress bar showing convergence to optimal solution
+- Helps visualize how the algorithm converges from random → all 1s
 
 Example for Knapsack problem:
 ```bash
