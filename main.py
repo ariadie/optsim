@@ -43,20 +43,24 @@ def run_ga(problem_name="onemax", problem_size=100):
     best_solution = solver.solve()
     print("Optimization complete.")
     
+    
     # 6. Show results
     print(f"Best solution fitness: {problem.evaluate(best_solution)}")
     
-    # 7. Visualization
-    if not os.path.exists("plots"):
-        os.makedirs("plots")
-        
-    visualizer.plot(logger.get_history(), f"plots/ga_{problem_name}_{problem_size}.png")
-
-    # 8. Save Logs
+    # 7. Save Logs and Visualizations
     if not os.path.exists("logs"):
         os.makedirs("logs")
     
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    
+    # Save plots to logs directory with timestamp
+    visualizer.plot_fitness(logger.get_history(), f"logs/ga_{problem_name}_{problem_size}_fitness_{timestamp}.png")
+    visualizer.plot_population_heatmap(logger.get_history(), f"logs/ga_{problem_name}_{problem_size}_heatmap_{timestamp}.png")
+    
+    if problem_name == "knapsack":
+        visualizer.plot_knapsack_solution(problem, best_solution, f"logs/ga_{problem_name}_{problem_size}_solution_{timestamp}.png")
+
+    # Save CSV log
     log_filename = f"logs/ga_{problem_name}_log_{timestamp}.csv"
     logger.save_to_csv(log_filename)
     print(f"Logs saved to {log_filename}")
@@ -108,17 +112,18 @@ def run_sa(problem_name="onemax", problem_size=100):
     best_solution = solver.solve()
     print("Optimization complete.")
     
+    
     print(f"Best solution fitness: {problem.evaluate(best_solution)}")
-    
-    if not os.path.exists("plots"):
-        os.makedirs("plots")
-    
-    visualizer.plot(logger.get_history(), f"plots/sa_{problem_name}_{problem_size}.png")
     
     if not os.path.exists("logs"):
         os.makedirs("logs")
     
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    
+    # Save plot to logs directory with timestamp
+    visualizer.plot_fitness(logger.get_history(), f"logs/sa_{problem_name}_{problem_size}_fitness_{timestamp}.png")
+    
+    # Save CSV log
     log_filename = f"logs/sa_{problem_name}_log_{timestamp}.csv"
     logger.save_to_csv(log_filename)
     print(f"Logs saved to {log_filename}")

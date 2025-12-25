@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file.
 
+
+## [0.6.0] - 2025-12-25
+### Added
+- **Enhanced Visualization System**: Major upgrade to `visualizer.py` with three specialized plotting methods:
+  - `plot_fitness()`: Standard fitness progression charts (renamed from `plot()`).
+  - `plot_population_heatmap()`: Gene convergence visualization showing population diversity over generations.
+  - `plot_knapsack_solution()`: Problem-specific bar charts for Knapsack item selection.
+- Population data collection: `Logger` now captures population snapshots for diversity analysis.
+- Updated `GASolver` to pass population data to logger.
+- Updated `main.py` to generate multiple visualization types per run.
+
+### Changed
+- **Output Structure Reorganization**: All plots now saved to `logs/` directory (previously `plots/`).
+- **Timestamped Filenames**: Plot filenames now include timestamps matching CSV log format (e.g., `ga_onemax_10_fitness_20251225_074411.png`).
+- Bumped `visualizer.py` version to 0.6.0.
+- Plot filenames now include visualization type suffix (e.g., `_fitness.png`, `_heatmap.png`).
+
 ## [0.5.0] - 2025-12-24
 ### Added
 - Implemented **0/1 Knapsack Problem** (`problems/knapsack.py`) as a new optimization challenge.

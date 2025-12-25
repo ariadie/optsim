@@ -42,7 +42,7 @@ class Solver:
             best_ind = self.population[fitness_scores.index(best_fitness)]
             
             # Logging
-            self.logger.log(gen, best_fitness, avg_fitness, best_ind)
+            self.logger.log(gen, best_fitness, avg_fitness, best_ind, population=self.population[:])
             
             # Selection and Reproduction
             new_population = []

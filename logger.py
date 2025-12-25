@@ -13,13 +13,14 @@ class Logger:
     def __init__(self):
         self.history: List[Dict[str, Any]] = []
 
-    def log(self, generation: int, best_fitness: float, avg_fitness: float, best_solution: Any = None):
+    def log(self, generation: int, best_fitness: float, avg_fitness: float, best_solution: Any = None, population: List[Any] = None):
         """Log statistics for a generation."""
         entry = {
             "generation": generation,
             "best_fitness": best_fitness,
             "avg_fitness": avg_fitness,
-            "best_solution": best_solution
+            "best_solution": best_solution,
+            "population": population
         }
         self.history.append(entry)
         print(f"Gen {generation}: Best Fitness = {best_fitness}, Avg Fitness = {avg_fitness:.2f}, Best Sol = {best_solution}")
